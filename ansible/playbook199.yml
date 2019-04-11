@@ -1,0 +1,22 @@
+---
+- name: pulling ver from switches
+  hosts: eosswitches
+  gather_facts: no
+
+  vars:
+          ansible_connection: network_cli
+          ansible_network_os: eos
+          ansible_become: yes
+          ansible_become_method: enable
+          ansible_user: admin
+          ansible_ssh_pass: alta3
+
+  tasks:
+          - name: run show ver
+            cli_command:
+                    command: show version
+            register: results
+
+          - name: print
+            debug:
+                    var: results

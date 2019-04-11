@@ -1,0 +1,14 @@
+---
+- name: game of win or lose
+  hosts: localhost
+  vars:
+          highlow: ""
+
+  tasks:
+          - name: Display highlow
+            debug:
+                    var: highlow
+                    verbosity: 3
+
+          - name: 
+

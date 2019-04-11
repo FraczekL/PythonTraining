@@ -1,0 +1,5 @@
+---
+# vars file for alta3.example
+#
+switchint: 13
+switchver: "4.17"

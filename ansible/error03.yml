@@ -1,0 +1,13 @@
+---
+- name: Trigger a fals
+  hosts: planet-express
+
+  tasks:
+          - block:
+                  - shell: "echo 'my singe task ran' > example.txt"
+                  - shell: "echo 'my second task ran' >> example.txt"
+                  - shell: "/bin/false" #this always returns a false value
+            rescue:
+                  - shell: "echo 'my rescue code ran. maybe it undoes whatever the block tried to do' >> example.txt"
+            always:
+                  - shell: "echo 'this always runs' >> example.txt"

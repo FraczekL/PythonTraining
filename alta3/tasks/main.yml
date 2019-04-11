@@ -1,0 +1,23 @@
+---
+# tasks file for alta3.example
+#
+- name: Harvest Arista Facts
+  eos_facts:
+  when: ansible_network_os == 'eos'
+
+- name: Copy to local sys
+  copy:
+    content: "{{ ansible_facts | to_nice_json }}"
+    dest: "~/{{ inventory_hostname }}.txt"
+  tags:
+    - never
+    - grabfacts
+
+- fail:
+    msg: "Fail. interfaces"
+  when: ansible_facts.net_interfaces|length != switchint
+
+- fail:
+    msg: "Fail. Version"
+  when: "switchver not in ansible_facts.net_version"
+...
